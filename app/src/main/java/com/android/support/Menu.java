@@ -84,6 +84,8 @@ public class Menu extends DZTheme {
             @Override
             public void Init(Context context, TextView title, TextView subTitle) {
                 Menu.this.Init(context, title, subTitle);
+                title.setText("Only Fair Hacks");
+                
             }
         });
     }
