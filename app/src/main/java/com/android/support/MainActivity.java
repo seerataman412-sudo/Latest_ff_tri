@@ -1,6 +1,7 @@
 package com.android.support;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,8 +11,8 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
-    // 🔑 यहाँ आप अपनी पसंद की कोई भी "Activation Key" लिख सकते हैं
-    private final String SECRET_KEY = "FAIRHACK2026"; 
+    // 🔑 आपकी सीक्रेट एक्टिवेशन की
+    private final String SECRET_KEY = "FairHacks2026"; 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,8 @@ public class MainActivity extends Activity {
         
         // हमारे XML लेआउट को स्क्रीन पर दिखाना
         setContentView(getResources().getIdentifier("activity_main", "layout", getPackageName()));
+
+        final Context ctx = this; // एरर फिक्स करने के लिए कॉन्टेक्स्ट वेरिएबल
 
         // XML के बटन्स और इनपुट बॉक्स को जावा से जोड़ना
         final EditText edtKey = findViewById(getResources().getIdentifier("edtKey", "id", getPackageName()));
@@ -32,27 +35,26 @@ public class MainActivity extends Activity {
                 String inputKey = edtKey.getText().toString().trim();
                 
                 if (inputKey.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "कृपया Activation Key डालें!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ctx, "कृपया Activation Key डालें!", Toast.LENGTH_SHORT).show();
                 } 
-                // 🔑 अगर यूजर की डाली हुई की (Key) हमारी सीक्रेट की से मैच करती है
+                // 🔑 अगर की मैच होती है
                 else if (inputKey.equals(SECRET_KEY)) {
-                    Main.Start(MainActivity.this); // फ्लोटिंग मेनू चालू करें
-                    Toast.makeText(MainActivity.this, "पैनल सफलतापूर्वक अनलॉक हो गया!", Toast.LENGTH_SHORT).show();
-                    finish(); // लॉगिन स्क्रीन बंद कर दें
+                    Main.Start((Activity) ctx); // यहाँ अब एरर नहीं आएगा
+                    Toast.makeText(ctx, "पैनल सफलतापूर्वक अनलॉक हो गया!", Toast.LENGTH_SHORT).show();
+                    finish(); 
                 } 
                 // ❌ अगर की गलत है
                 else {
-                    Toast.makeText(MainActivity.this, "गलत Key! कृपया सही कोड डालें।", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ctx, "गलत Key! कृपया सही कोड डालें।", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-        // 2. GENERATE KEY बटन पर क्लिक करने पर आपका टेलीग्राम या कोई वेबसाइट खुल जाएगी
+        // 2. GENERATE KEY बटन पर क्लिक करने का लॉजिक
         btnGenerate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Key जनरेट करने के लिए ब्राउज़र खुल रहा है...", Toast.LENGTH_SHORT).show();
-                // यहाँ आप अपने टेलीग्राम चैनल का लिंक भी डाल सकते हैं
+                Toast.makeText(ctx, "Key जनरेट करने के लिए ब्राउज़र खुल रहा है...", Toast.LENGTH_SHORT).show();
                 android.net.Uri uri = android.net.Uri.parse("https://github.com"); 
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
