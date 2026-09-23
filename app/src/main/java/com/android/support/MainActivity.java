@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
         // हमारे XML लेआउट को स्क्रीन पर दिखाना
         setContentView(getResources().getIdentifier("activity_main", "layout", getPackageName()));
 
-        final Context ctx = this; // एरर फिक्स करने के लिए कॉन्टेक्स्ट वेरिएबल
+        final Context ctx = this;
 
         // XML के बटन्स और इनपुट बॉक्स को जावा से जोड़ना
         final EditText edtKey = findViewById(getResources().getIdentifier("edtKey", "id", getPackageName()));
@@ -39,9 +39,17 @@ public class MainActivity extends Activity {
                 } 
                 // 🔑 अगर की मैच होती है
                 else if (inputKey.equals(SECRET_KEY)) {
-                    Main.Start((Activity) ctx); // यहाँ अब एरर नहीं आएगा
-                    Toast.makeText(ctx, "पैनल सफलतापूर्वक अनलॉक हो गया!", Toast.LENGTH_SHORT).show();
-                    finish(); 
+                    try {
+                        // एंड्रॉइड 14+ के लिए सुरक्षित सर्विस स्टार्ट करने का तरीका
+                        Intent serviceIntent = new Intent(ctx, FloatingModMenuService.class);
+                        startService(serviceIntent);
+                        
+                        Toast.makeText(ctx, "पैनल सफलतापूर्वक अनलॉक हो गया!", Toast.LENGTH_SHORT).show();
+                        finish(); 
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(ctx, "सर्विस शुरू करने में समस्या आई!", Toast.LENGTH_SHORT).show();
+                    }
                 } 
                 // ❌ अगर की गलत है
                 else {
