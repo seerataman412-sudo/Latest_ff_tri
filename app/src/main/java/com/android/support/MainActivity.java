@@ -40,8 +40,8 @@ public class MainActivity extends Activity {
                 // 🔑 अगर की मैच होती है
                 else if (inputKey.equals(SECRET_KEY)) {
                     try {
-                        // एंड्रॉइड 14+ के लिए बिल्कुल सही और सुरक्षित सर्विस नाम
-                        Intent serviceIntent = new Intent(ctx, FloatingMenuService.class);
+                        // एंड्रॉइड 14+ के लिए बिल्कुल सही और असली सर्विस नाम
+                        Intent serviceIntent = new Intent(ctx, Launcher.class);
                         startService(serviceIntent);
                         
                         Toast.makeText(ctx, "पैनल सफलतापूर्वक अनलॉक हो गया!", Toast.LENGTH_SHORT).show();
