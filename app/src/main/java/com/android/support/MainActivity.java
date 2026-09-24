@@ -3,6 +3,7 @@ package com.android.support;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -40,9 +41,14 @@ public class MainActivity extends Activity {
                 // 🔑 अगर की मैच होती है
                 else if (inputKey.equals(SECRET_KEY)) {
                     try {
-                        // एंड्रॉइड 14+ के लिए बिल्कुल सही और असली सर्विस नाम
                         Intent serviceIntent = new Intent(ctx, Launcher.class);
-                        startService(serviceIntent);
+                        
+                        // 🔥 Android 14+ (Vivo Y29) क्रैश फिक्स: यहाँ Foreground Service का नियम लगेगा
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            startForegroundService(serviceIntent);
+                        } else {
+                            startService(serviceIntent);
+                        }
                         
                         Toast.makeText(ctx, "पैनल सफलतापूर्वक अनलॉक हो गया!", Toast.LENGTH_SHORT).show();
                         finish(); 
