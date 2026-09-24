@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://android.com">
-
+<manifest xmlns:android="http://android.com/apk/res/android">
     <!-- आवश्यक परमिशन जो नए एंड्रॉइड वर्शन्स के लिए ज़रूरी हैं -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
