@@ -15,7 +15,7 @@
         android:supportsRtl="true">
         
         <activity
-            android:name=".MainActivity"
+            android:name="com.android.support.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +25,7 @@
 
         <!-- 🛠️ रियल क्रैश फिक्स: यहाँ हमने नए एंड्रॉइड के नियमों के अनुसार सर्विस टाइप जोड़ दिया है -->
         <service
-            android:name=".Launcher"
+            android:name="com.android.support.Launcher"
             android:enabled="true"
             android:exported="false"
             android:foregroundServiceType="specialUse">
