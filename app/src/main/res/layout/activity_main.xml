@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://android.com"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -8,24 +8,24 @@
     android:background="#0A0B1E"
     android:padding="24dp">
 
-    <!-- 1. गोल लोगो (Circle Logo) -->
-    <androidx.cardview.widget.CardView
+    <!-- 1. Logo -->
+    <FrameLayout
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginTop="50dp"
-        app:cardCornerRadius="60dp"
-        app:cardElevation="8dp"
-        android:backgroundTint="#121330">
-        
+        android:background="#121330">
+
         <ImageView
             android:id="@+id/imgLogo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/my_logo" />
-    </androidx.cardview.widget.CardView>
+            android:src="@drawable/my_logo"
+            android:contentDescription="App Logo" />
 
-    <!-- 2. मुख्य टाइटल (Main Title) -->
+    </FrameLayout>
+
+    <!-- 2. Main Title -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
         android:textColor="#FFFFFF"
         android:textSize="26sp"
         android:textStyle="bold"
-        android:letterSpacing="0.05"/>
+        android:letterSpacing="0.05" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -42,9 +42,9 @@
         android:layout_marginTop="4dp"
         android:text="ONLY FAIR HACKS"
         android:textColor="#A0A5C0"
-        android:textSize="14sp"/>
+        android:textSize="14sp" />
 
-    <!-- 3. एक्टिवेशन की इनपुट बॉक्स (Activation Key Input Box) -->
+    <!-- 3. Activation Key -->
     <EditText
         android:id="@+id/edtKey"
         android:layout_width="match_parent"
@@ -57,9 +57,9 @@
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:inputType="textPassword"
-        android:textSize="16sp"/>
+        android:textSize="16sp" />
 
-    <!-- 4. अनलॉक पैनल बटन (Unlock Panel Button) -->
+    <!-- 4. Unlock Button -->
     <Button
         android:id="@+id/btnUnlock"
         android:layout_width="match_parent"
@@ -71,7 +71,7 @@
         android:textSize="15sp"
         android:background="@drawable/button_gradient_bg" />
 
-    <!-- 5. की जनरेट बटन (Generate Key Button) -->
+    <!-- 5. Generate Key Button -->
     <Button
         android:id="@+id/btnGenerate"
         android:layout_width="match_parent"
